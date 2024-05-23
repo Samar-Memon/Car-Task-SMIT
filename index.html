@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Stopping Task SMIT</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100%;
+            height: 100vh;
+            background: url(./road.jpeg) center no-repeat;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
+        .signal-poll{
+            border: 2px solid #000;
+            width: 10px;
+            height: 200px;
+            background-color: #acb1b1;
+            position: absolute;
+            bottom: 240px;
+            right: 200px;
+        }
+        .signal{
+            position: absolute;
+            width: 60px;
+            top: -100px;
+            left: -25px;
+        }
+        .car{
+            position: absolute;
+            width: 250px;
+            bottom: 100px;
+            left: 0;
+            transition: all 300ms ease-in-out;
+            animation: carDrive 9s linear 1s infinite;
+        }
+        @keyframes carDrive {
+            0%{
+                left: 0;
+            }
+            100%{
+                left: 100%;
+            }
+        }
+        .buttons{
+            font-size: 20px;
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 30px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button{
+            font-size: 20px;
+            padding: 10px 30px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="signal-poll">
+        <img src="./red.jpg" alt="" class="signal">
+    </div>
+    <img src="./car.png" alt="" class="car">
+    <div class="buttons">
+        <button id="race">Race</button>
+        <button id="brake">Brake</button>
+    </div>
+
+    <script>
+        let img = document.querySelector('.signal');
+        let race = document.querySelector('#race');
+        let brake = document.querySelector('#brake');
+        setInterval(() => {
+            let randomCount = Math.floor(Math.random() * 3);
+            let images = ['red.jpg', 'yellow.jpg', 'green.jpg'];
+            img.src = images[randomCount]
+        }, 3000)
+        race.addEventListener('click', () => {
+            document.querySelector('.car').style.animationPlayState  = 'running'
+        })
+        brake.addEventListener('click', () => {
+            document.querySelector('.car').style.animationPlayState  = 'paused'
+        })
+    </script>
+</body>
+</html>
